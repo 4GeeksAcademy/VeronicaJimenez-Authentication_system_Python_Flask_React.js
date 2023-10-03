@@ -33,6 +33,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+
+			setUser: (userValue) => {
+				setStore({ user: userValue})
+			},
+
+			logout: () => {
+				setStore({ user: null})
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
