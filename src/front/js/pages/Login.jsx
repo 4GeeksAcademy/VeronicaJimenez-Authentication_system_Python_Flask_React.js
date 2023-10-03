@@ -31,7 +31,7 @@ export const Login = () => {
                 if (typeof (data) == "string")
                     alert(data);
                 else {
-                    actions.setUser(data.id);
+                    actions.setUser(data);
                     alert("Log in successfully");
                     return navigate("/private");
                 }

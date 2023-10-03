@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const Private = props => {
 	const { store, actions } = useContext(Context);
 	const user = store.user;
+
 	const navigate = useNavigate();
 
 	if (user == null) {

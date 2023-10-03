@@ -6,6 +6,7 @@ from flask_jwt_extended import get_jwt_identity
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token
 
 api = Blueprint('api', __name__)
 
@@ -40,7 +41,12 @@ def handle_login():
     if user is None:
         return jsonify("The email doesn't exist"), 400
     if bcrypt.check_password_hash(user.password, body["password"]):
-        return jsonify(user.serialize()), 200
+        access_token = create_access_token(identity=user.email)
+        response_body = {
+            "access_token": access_token,
+            "user": user.serialize()
+        }
+        return jsonify(response_body), 200
     else:
         return jsonify("The password is incorrect"), 400
 

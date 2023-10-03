@@ -12,6 +12,7 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import JWTManager
 
 # from models import Person
 
@@ -38,6 +39,10 @@ bcrypt = Bcrypt(app)
 
 # Allow CORS requests to this API
 CORS(app)
+
+# Setup the Flask-JWT-Extended extension
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET")  # Change this!
+jwt = JWTManager(app)
 
 # add the admin
 setup_admin(app)
