@@ -8,11 +8,11 @@ export const Private = props => {
 	//console.log("user",user);
 	const navigate = useNavigate();
 
-	// useEffect (()=>{
-	// 	if (user == null) {
-	// 		navigate("/login");
-	// 	} 
-	// },[user])
+	useEffect (()=>{
+		if (user == null) {
+	 		navigate("/login");
+	 	} 
+	},[user])
 
 	useEffect (()=>{
 		if (user !== null) {
